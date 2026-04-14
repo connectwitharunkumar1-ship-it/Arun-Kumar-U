@@ -1,0 +1,24 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "A potential student who has expressed interest via brochure download or contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the lead" },
+        "email": { "type": "string", "format": "email", "description": "Email address" },
+        "phone": { "type": "string", "description": "Phone number" },
+        "source": { "type": "string", "enum": ["Brochure", "Contact"], "description": "Where the lead came from" },
+        "message": { "type": "string", "description": "Optional message from contact form" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp when lead was created" }
+      },
+      "required": ["name", "email", "phone", "source", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Collection of leads captured from the website."
+    }
+  }
+}
